@@ -39,7 +39,10 @@
 			<footer id="footer">
 				{% include 'footer.twig' %}
 			</footer>
+			<script src="{{ site.theme.link }}/static/build/runtime.js"></script>
+			<script src="{{ site.theme.link }}/static/build/app.js"></script>
 			{{ function('wp_footer') }}
 		{% endblock %}
+
 	</body>
 </html>
