@@ -1,0 +1,27 @@
+{
+  "name": "habanatech-woodmen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev:css": "postcss ./assets/css/tailwind.css -o ./static/css/main.css",
+    "build:css": "cross-env NODE_ENV=production postcss ./assets/css/tailwind.css -o ./assets/css/main.css",
+    "watch:css": "npx tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/main.css --watch",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production --progress"
+  },
+  "author": "habana.tech",
+  "license": "ISC",
+  "devDependencies": {
+    "@hotwired/turbo": "^7.1.0",
+    "@symfony/stimulus-bridge": "^2.0.0",
+    "@symfony/webpack-encore": "^1.0.0",
+    "alpinejs": "^3.8.1npm aud",
+    "postcss-loader": "^6.2.1",
+    "sass": "^1.48.0",
+    "sass-loader": "^12.4.0",
+    "tailwindcss": "^3.0.12",
+    "webpack-notifier": "^1.6.0"
+  }
+}
