@@ -1,5 +1,7 @@
 <?php
 
+use Twig\TwigFunction;
+
 /**
  * We're going to configure our theme inside of a subclass of Timber\Site
  * You can move this to its own file and include here via php's include("MySite.php")
@@ -14,6 +16,9 @@ class CarpenterSite extends Timber\Site
 		add_filter('timber/twig', array( $this, 'add_to_twig' ));
 		add_action('init', array( $this, 'register_post_types' ));
 		add_action('init', array( $this, 'register_taxonomies' ));
+
+		add_filter('get_twig', array($this, 'add_twig_pll'));
+
 		parent::__construct();
 	}
 	/** This is where you can register custom post types. */
@@ -34,7 +39,7 @@ class CarpenterSite extends Timber\Site
 		$context['foo']   = 'bar';
 		$context['stuff'] = 'I am a value set in your functions.php file';
 		$context['notes'] = 'These values are available everytime you call Timber::context();';
-		$context['menu']  = new Timber\Menu();
+		$context['menu']  = new Timber\Menu('main-menu');
 		$context['site']  = $this;
 		return $context;
 	}
@@ -114,4 +119,25 @@ class CarpenterSite extends Timber\Site
 		$twig->addFilter(new Twig\TwigFilter('myfoo', array( $this, 'myfoo' )));
 		return $twig;
 	}
+
+	function add_twig_pll($twig) {
+		$function = new TwigFunction('pll_permalink', function ($id) {
+			return get_permalink(pll_get_post($id));
+		});
+		$twig->addFunction($function);
+
+		$function = new TwigFunction('pll_post', function ($id) {
+			return new Timber\Post(pll_get_post($id));
+		});
+		$twig->addFunction($function);
+
+		$function = new TwigFunction('pll_the_languages', function ($showFlags = 1) {
+			$out =  pll_the_languages( array( 'show_flags' => $showFlags,'show_names' => 0, 'echo' => 0 ) );
+
+			return $out;
+		});
+		$twig->addFunction($function);
+		return $twig;
+	}
+
 }
