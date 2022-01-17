@@ -13,14 +13,22 @@
  * @since   Timber 0.1
  */
 require_once __DIR__ . '/../../../../vendor/autoload.php';
+
+use Timber\Post;
+use Timber\Term;
 use Timber\Timber as Timber;
 use Timber\PostQuery as PostQuery;
+use Timber\Loader as Loader;
 
 $context          = Timber::context();
 $context['posts'] = new PostQuery();
-$context['foo']   = 'bar';
 $templates        = array( 'index.twig' );
-if ( is_home() ) {
-	array_unshift( $templates, 'front-page.twig', 'home.twig' );
+
+if (is_home()) {
+
+    $context['home_hero'] = getTranslatedPostByTermId('home_hero');
+    $context['product'] = getTranslatedPostByTermId('product');
+
+    array_unshift($templates, 'front-page.twig', 'home.twig');
 }
-Timber::render( $templates, $context );
+Timber::render($templates, $context, 0, Loader::CACHE_NONE);

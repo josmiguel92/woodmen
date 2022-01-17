@@ -17,6 +17,7 @@
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo": "^7.1.0",
     "@symfony/webpack-encore": "^1.0.0",
+    "@tailwindcss/typography": "^0.5.0",
     "alpinejs": "^3.8.1npm aud",
     "postcss": "^8.3.11",
     "postcss-import": "^14.0.2",
@@ -24,11 +25,11 @@
     "sass": "^1.48.0",
     "sass-loader": "^12.4.0",
     "tailwindcss": "^3.0.12",
-    "@tailwindcss/typography": "^0.5.0",
     "webpack-notifier": "^1.6.0"
   },
   "dependencies": {
     "@hotwired/stimulus-webpack-helpers": "^1.0.1",
-    "core-js": "^3.19.0"
+    "core-js": "^3.19.0",
+    "daisyui": "^1.23.0"
   }
 }

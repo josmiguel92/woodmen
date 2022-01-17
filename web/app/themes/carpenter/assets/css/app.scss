@@ -1,9 +1,20 @@
 @tailwind base;
 @tailwind components;
 
+//Montserrat, Unna, Open sans font
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Open+Sans:ital,wght@0,300;0,700;1,300;1,400&family=Unna:ital,wght@0,400;0,700;1,400&display=swap');
+
 .lang-list{
   @apply list-none flex flex-row gap-1 px-3 py-2;
 
+}
+
+.grid.home_hero{
+  @apply h-screen-1/2 md:h-screen-110;
+}
+.product_show{
+  border: solid;
+  @apply border-gray-200;
 }
 
 @tailwind utilities;

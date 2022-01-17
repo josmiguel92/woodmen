@@ -1,0 +1,57 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <section class="bg-gray-200">
+        {% for post in home_hero %}
+            <div class="grid home_hero grid-cols-9 grid-rows-6">
+                <div class="col-start-1 col-end-3 row-start-1 row-end-6
+             md:col-end-4 md:row-end-5 md:h-screen overflow-hidden ">
+                    <img class="h-full"
+                         src="{{ site.theme.link }}/static/img/wood-patern-3.jpg" alt="">
+                </div>
+                <div class="col-start-3 col-end-10 row-start-1 row-end-7 overflow-hidden">
+                    <img class="min-h-full md:w-full" src="{{post.thumbnail.src}}"  alt=""/>
+                </div>
+                <div class="col-start-2 col-end-9 row-start-3 col-span-2 md:col-end-7">
+                    <h2 class="text-3xl md:text-7xl font-heading text-white font-black">
+                        <a href="{{post.link}}">{{post.title}}</a></h2>
+                </div>
+                <div class="col-start-2 col-span-2 row-start-5
+            md:row-start-4 flex items-center">
+                    <button class="btn btn-accent md:btn-lg">
+                        {{ __('See our offers') }}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline-block w-6 h-6 ml-2 stroke-current">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            {#        {% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}#}
+        {% endfor %}
+    </section>
+
+    <section class="product_show bg-gray-200 border-gray-200 border-solid">
+        <div class="flex flex-col my-20 mx-64 px-40 border-r-4 border-accent">
+            <b class="product_heading text-2xl font-display text-gray-500"> {{ __('Familiarize yourself with our rich offer') }}</b>
+            <b class="mt-10 product_heading text-6xl font-heading"> {{ __('Familiarize yourself with our rich offer') }}</b>
+        </div>
+        {% for post in product %}
+
+        {% endfor %}
+    </section>
+
+
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+        <div class="md:flex">
+            <div class="md:shrink-0">
+                <img class="h-48 w-full object-cover md:h-full md:w-48" src="/img/store.jpg" alt="Man looking at item at a store">
+            </div>
+            <div class="p-8">
+                <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Case study</div>
+                <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Finding customers for your new business</a>
+                <p class="mt-2 text-slate-500">Getting a new business off the ground is a lot of hard work. Here are five ideas you can use to find your first customers.</p>
+            </div>
+        </div>
+    </div>
+    {% include 'partial/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+{% endblock %}

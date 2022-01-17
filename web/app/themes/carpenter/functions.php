@@ -13,10 +13,13 @@
  * to load your dependencies and initialize Timber. If you are using Timber via the WordPress.org
  * plug-in, you can safely delete this block.
  */
+
+use Timber\Post;
+
 $composer_autoload = __DIR__ . '/../../../../vendor/autoload.php';
-if ( file_exists( $composer_autoload ) ) {
-	require_once $composer_autoload;
-	$timber = new Timber\Timber();
+if (file_exists($composer_autoload)) {
+    require_once $composer_autoload;
+    $timber = new Timber\Timber();
 }
 
 
@@ -55,3 +58,27 @@ Timber::$autoescape = false;
 require_once 'CarpenterSite.php';
 
 new CarpenterSite();
+
+function getPostTranslation($post_id): ?Post
+{
+    $post = pll_get_post($post_id);
+    if ($post) {
+        return new Post($post);
+    }
+    return null;
+}
+
+function getPostCollectionByTermSlug($term_slug)
+{
+    return ( new \Timber\Term($term_slug) )->posts;
+}
+
+function getTranslatedPostByTermId($term_id): array
+{
+    $posts = ( new \Timber\Term($term_id) )->posts;
+    $postTranslations = [];
+    foreach ($posts as $post) {
+        $postTranslations[] = new Post(pll_get_post($post->ID));
+    }
+    return $postTranslations;
+}
