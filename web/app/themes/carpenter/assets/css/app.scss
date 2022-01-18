@@ -4,6 +4,13 @@
 //Montserrat, Unna, Open sans font
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Open+Sans:ital,wght@0,300;0,700;1,300;1,400&family=Unna:ital,wght@0,400;0,700;1,400&display=swap');
 
+:root {
+  --rounded-box: 0;
+}
+
+header > div.fixed{
+  z-index: 50;
+}
 .lang-list{
   @apply list-none flex flex-row gap-1 px-3 py-2;
 
@@ -19,19 +26,31 @@
     grid-template-rows: repeat(7, minmax(0, 15vh));
     grid-template-columns: repeat(2, minmax(10rem, 40vw));
 
-    & div:nth-child(1){
-      border: solid red 2px;
+    & > div:nth-child(1){
+      grid-area: 1 / 1 / 5 / 2;
     }
-    & div:nth-child(2){
-      border: solid blue 2px;
+    &  > div:nth-child(2){
+      grid-area: 2 / 2 / 4 / 3;
     }
-    & div:nth-child(3){
-      border: solid aquamarine 2px;
+    &  > div:nth-child(3){
+      grid-area: 5 / 1 / 7 / 2;
     }
-    & div:nth-child(4){
-      border: solid blueviolet 2px;
+    & >  div:nth-child(4){
+      grid-area: 4 / 2 / 8 / 3;
     }
+    & .card.image-full
+    {
+      &::before{
+        background-color: transparent;
+        opacity: 1;
+      }
+
+      & > figure{
+        overflow: hidden;
+      }
+    }
+
+
   }
 }
-
 @tailwind utilities;

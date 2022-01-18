@@ -30,18 +30,28 @@
         {% endfor %}
     </section>
 
-    <section class="product_show bg-gray-200 border-gray-200 border-solid">
+    <section class="product_show bg-gray-200 border-gray-200 border-solid mb-64">
         <div class="flex flex-col my-10 md:my-20 mx-5 md:mx-56 md:px-40 border-r-4 border-accent">
             <b class="product_heading text-xl mr-5 md:text-2xl font-display text-gray-500"> {{ __('Familiarize yourself with our rich offer') }}</b>
             <b class="mt-5 md:mt-10 product_heading text-4xl md:text-6xl font-heading"> {{ __('Familiarize yourself with our rich offer') }}</b>
         </div>
 
-        <div class="grid gap-5 w-3/4 mx-auto">
+        <div class="grid gap-10 w-3/4 mx-auto -mb-56">
             {% for post in product %}
-                <div>
-                    <p>{{ post.title }}</p>
-                    <img class="h-2/5" src="{{post.thumbnail.src}}"  alt=""/>
+                <div class="card shadow-xl image-full border-r-0">
+                    <figure>
+                        <img src="{{post.thumbnail.src}}">
+                    </figure>
+                    <div class="justify-center card-body gap-8">
+                        <p>{{ post.post_excerpt }}</p>
+                        <h2 class="card-title  md:text-5xl font-heading font-bold">{{ post.title }}</h2>
+                        <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p>
+                        <div class="card-actions">
+                            <button class="btn btn-primary">Get Started</button>
+                        </div>
+                    </div>
                 </div>
+
             {% endfor %}
         </div>
 
