@@ -36,19 +36,33 @@
             <b class="mt-5 md:mt-10 product_heading text-4xl md:text-6xl font-heading"> {{ __('Familiarize yourself with our rich offer') }}</b>
         </div>
 
-        <div class="grid gap-10 w-3/4 mx-auto -mb-56">
+        <div class="products_grid flex flex-col md:grid gap-10 w-3/4 mx-auto -mb-64">
             {% for post in product %}
-                <div class="card shadow-xl image-full border-r-0">
+                <div class="card shadow-xl image-full border-r-0 bg-gray-500">
                     <figure>
                         <img src="{{post.thumbnail.src}}">
                     </figure>
                     <div class="justify-center card-body gap-8">
-                        <p>{{ post.post_excerpt }}</p>
-                        <h2 class="card-title  md:text-5xl font-heading font-bold">{{ post.title }}</h2>
-                        <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p>
+                        <p class="font-light tracking-widest text-gray-400">{{ post.post_excerpt }}</p>
+                        <h2 class="card-title
+                        {% if loop.index in [1,4] %}
+                            text-3xl md:text-5xl font-heading font-bold my-16
+                        {% else %}
+                            text-2xl md:text-4xl font-display font-bold
+                        {% endif %}
+                        ">{{ post.title }}</h2>
+                        {% if loop.index in [1,4] %}
+{#                            <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p>#}
                         <div class="card-actions">
-                            <button class="btn btn-primary">Get Started</button>
+                            <button class="btn btn-secondary">
+                                Get Started
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline-block w-5 h-5 ml-2 stroke-current">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+
+                            </button>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
 

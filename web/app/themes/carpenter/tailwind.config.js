@@ -80,7 +80,7 @@ module.exports = {
 
                     'secondary' : '#353037',         /* Secondary color */
                     'secondary-focus' : '#0B090B',   /* Secondary color - focused */
-                    'secondary-content' : '#000000', /* Foreground content color to use on secondary color */
+                    'secondary-content' : '#f9fafb', /* Foreground content color to use on secondary color */
 
                     'accent' : '#ec7247',            /* Accent color */
                     'accent-focus' : '#bf5630',      /* Accent color - focused */
