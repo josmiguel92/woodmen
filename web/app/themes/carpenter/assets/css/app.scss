@@ -78,4 +78,19 @@ header > div.fixed{
   }
 
 }
+
+div.blocks-gallery-image{
+    & .blocks-gallery-item{
+      &:nth-child(1){
+        @apply translate-y-0;
+      }
+      &:nth-child(2){
+        @apply translate-y-5;
+      }
+      &:nth-child(3){
+        @apply translate-y-10;
+      }
+
+  }
+}
 @tailwind utilities;

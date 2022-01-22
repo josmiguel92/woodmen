@@ -15,11 +15,12 @@
  */
 
 use Timber\Post;
+use Timber\Timber;
 
 $composer_autoload = __DIR__ . '/../../../../vendor/autoload.php';
 if (file_exists($composer_autoload)) {
     require_once $composer_autoload;
-    $timber = new Timber\Timber();
+    $timber = new Timber();
 }
 
 
@@ -73,6 +74,25 @@ function getPostCollectionByTermSlug($term_slug)
     return ( new \Timber\Term($term_slug) )->posts;
 }
 
+function getStickyPostCollectionByTermSlug($term_slug)
+{
+	$sticky = get_option( 'sticky_posts' );
+	$args = array(
+		'posts_per_page' => 1,
+		'post__in' => $sticky,
+		'ignore_sticky_posts' => 0,
+//		'cat' => ( new \Timber\Term($term_slug) )->ID,
+	);
+	return $query = new \Timber\PostQuery($args);
+
+
+
+//	if ( isset( $sticky[0] ) ) {
+//		return ( new \Timber\Term($term_slug) )->posts;
+//	}
+
+}
+
 function getTranslatedPostByTermId($term_id): array
 {
     $posts = ( new \Timber\Term($term_id) )->posts;
@@ -81,4 +101,37 @@ function getTranslatedPostByTermId($term_id): array
         $postTranslations[] = new Post(pll_get_post($post->ID));
     }
     return $postTranslations;
+}
+
+function wporg_block_wrapper($block_content, $block)
+{
+//    dump([$block_content, $block]);
+
+	if(in_array($block['blockName'], ['core/gallery'])) {
+		return renderBlock($block);
+	}
+	return $block_content;
+
+}
+
+add_filter('render_block', 'wporg_block_wrapper', 10, 2);
+
+function renderBlock($block, $is_preview = false )
+{
+    $context = Timber::context();
+
+    // Store block values.
+    $context['block'] = $block;
+
+    // Store field values.
+    $context['fields'] = get_fields();
+
+    // Store $is_preview value.
+    $context['is_preview'] = $is_preview;
+
+    // Render the block.
+	$blockName = str_replace('/','-', $block['blockName']);
+//	dump('block/'.$blockName.'.twig');
+    return Timber::fetch(['block/'.$blockName.'.twig'], $context);
+
 }

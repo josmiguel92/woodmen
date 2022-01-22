@@ -18,12 +18,12 @@
                 </div>
                 <div class="col-start-2 col-span-2 row-start-5
             md:row-start-4 flex items-center">
-                    <button class="btn btn-accent md:btn-lg">
+                    <a href="{{ post.link }}" class="btn btn-accent md:btn-lg">
                         {{ __('See our offers') }}
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline-block w-6 h-6 ml-2 stroke-current">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                    </button>
+                    </a>
                 </div>
             </div>
             {#        {% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}#}
@@ -54,35 +54,52 @@
                         {% if loop.index in [1,4] %}
 {#                            <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p>#}
                         <div class="card-actions">
-                            <button class="btn btn-secondary">
+                            <a href="{{ post.link }}" class="btn btn-secondary">
                                 Get Started
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline-block w-5 h-5 ml-2 stroke-current">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                                 </svg>
 
-                            </button>
+                            </a>
                         </div>
                         {% endif %}
                     </div>
                 </div>
-
             {% endfor %}
         </div>
 
     </section>
 
-
-    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-        <div class="md:flex">
-            <div class="md:shrink-0">
-                <img class="h-48 w-full object-cover md:h-full md:w-48" src="/img/store.jpg" alt="Man looking at item at a store">
+    {% if aboutUs is not null %}
+    <section class="text-gray-600 body-font">
+        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+            <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+                <img class="object-cover object-center rounded" alt="hero" src="{{ aboutUs.thumbnail }}">
             </div>
-            <div class="p-8">
-                <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Case study</div>
-                <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Finding customers for your new business</a>
-                <p class="mt-2 text-slate-500">Getting a new business off the ground is a lot of hard work. Here are five ideas you can use to find your first customers.</p>
+            <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+                <h1 class="font-heading sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+                    {{ aboutUs.alternate_title ?? aboutUs.post_title }}
+                </h1>
+                <p class="mb-8 leading-relaxed">{{ aboutUs.preview.read_more(' ')  }}</p>
+
+{#                {{ dump(aboutUs.preview(50, false, " ") ) }}#}
+                <div class="flex justify-center">
+{#                     <a href="{{ .link }}" class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">#}
+{#                         Button</a>#}
+                    <a href="{{ aboutUs.link }}" class="btn btn-accent">
+                        {{ __('Read more') }}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline-block w-5 h-5 ml-2 stroke-current">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+
             </div>
         </div>
-    </div>
+    </section>
+    {% endif %}
+
+    
     {% include 'partial/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
 {% endblock %}
