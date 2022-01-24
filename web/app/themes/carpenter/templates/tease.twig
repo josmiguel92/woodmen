@@ -1,9 +1,23 @@
-<article class="tease tease-{{post.post_type}}" id="tease-{{post.ID}}">
+<section class="tease tease-{{post.post_type}} text-gray-600 body-font"  id="tease-{{post.ID}}">
 	{% block content %}
-		<h2 class="h2"><a href="{{post.link}}">{{post.title}}</a></h2>
-		<p>{{post.preview}}</p>
+	<div class="container mx-auto flex px-5 py-12 md:flex-row flex-col items-center">
 		{% if post.get_thumbnail %}
-			<img src="{{post.thumbnail.src}}" />
+		<div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+			<img class="object-cover object-center rounded w-full max-h-screen-1/2"
+				 alt="hero" src="{{post.thumbnail.src}}">
+		</div>
 		{% endif %}
+		<div class="lg:flex-grow md:w-1/2 lg:pl-12 md:pl-8 flex flex-col md:items-start md:text-left items-center text-center">
+			<a href="{{post.link}}">
+				<h1 class="use-separator-line title-font font-heading sm:text-4xl text-3xl mb-4 font-medium text-gray-900">{{post.title}}
+				</h1>
+			</a>
+			<p class="mb-8 leading-relaxed">{{ post.preview.read_more(' ')  }}</p>
+			<div class="flex justify-center">
+				<a  href="{{post.link}}" class="inline-flex btn btn-primary">{{ __('Read more') }}</a>
+
+			</div>
+		</div>
+	</div>
 	{% endblock %}
-</article>
+</section>

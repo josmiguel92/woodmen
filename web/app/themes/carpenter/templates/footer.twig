@@ -1,1 +1,53 @@
-Copyright {{"now"|date('Y')}}
+<footer class="px-3 py-8 bg-white dark:bg-gray-800 text-2 text-gray-500 dark:text-gray-200 transition-colors duration-200">
+    <div class="flex flex-col">
+        <div class="md:hidden mt-7 mx-auto w-11 h-px rounded-full">
+        </div>
+        <div class="mt-4 md:mt-0 flex flex-col md:flex-row md:gap-40">
+            <nav class="flex-1 flex flex-col items-center justify-center md:items-end md:border-r border-gray-100 md:pr-5">
+                <a aria-current="page" href="#" class="hover:text-gray-700 dark:hover:text-white">
+                    Components
+                </a>
+                <a aria-current="page" href="#" class="hover:text-gray-700 dark:hover:text-white">
+                    Contacts
+                </a>
+                <a aria-current="page" href="#" class="hover:text-gray-700 dark:hover:text-white">
+                    Customization
+                </a>
+            </nav>
+            <div class="md:hidden mt-4 mx-auto w-11 h-px rounded-full">
+            </div>
+            <div class="mt-4 md:mt-0 flex gap-2 flex-col items-center justify-center md:border-r border-gray-100">
+                <a class="hover:text-primary-gray-20" href="{{site.url}}">
+                    <span class="sr-only">
+                        Go home
+                    </span>
+                    <img class="h-6 inline align-baseline" src="{{ site.theme.link }}/static/img/logo2.svg" alt=""/>
+                    <b class="text-neutral text-center inline align-baseline">{{site.name}}</b>
+                </a>
+
+                <a class="hover:text-primary-gray-20 flex" href="tel://+1800101010100">
+                    <span class="sr-only">
+                        Phone number
+                    </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                    </svg>
+                    <b class="text-neutral text-center font-light inline align-baseline">+1800101010100</b>
+                </a>
+            </div>
+            <div class="md:hidden mt-4 mx-auto w-11 h-px rounded-full ">
+            </div>
+            <div class="mt-7 md:mt-0 flex-1 flex flex-col items-center justify-center md:items-start md:pl-5">
+                <span class="">
+                    © {{"now"|date('Y')}}
+                </span>
+                <span class="mt-7 md:mt-1">
+                    Created by
+                    <a class="underline hover:text-primary-gray-20" href="https://habana-tech.github.io">
+                        Habana.Tech
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+</footer>

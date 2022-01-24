@@ -1,38 +1,64 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<div class="content-wrapper">
-		<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
-			<img src="{{ post.thumbnail.src|resize(1200, 300) }}">
-			<section class="article-content">
-				<h1 class="article-h1">{{ post.title }}</h1>
-				<a href="{{ post.link }}">{{ _e('edit') }}</a>
-				<p class="blog-author">
-					<span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&bull;</span> <time datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date }}</time>
-				</p>
-				<div class="article-body">
-					{{post.content}}
-				</div>
-			</section>
+	<div class="content-wrapper pt-10">
+
+		<div class="content-wrapper">
+			<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+
+				{% if post.get_thumbnail %}
+
+					<div class="hero max-h-96" style="background-image: url({{post.thumbnail.src}});">
+						<div class="hero-overlay bg-opacity-60"></div>
+						<div class="text-center hero-content text-neutral-content">
+							<div class="max-w-md">
+								<h1 class="my-20 text-6xl font-heading font-bold">
+									{{post.title}}
+								</h1>
+							</div>
+						</div>
+					</div>
+				{% else %}
+
+					<div class="max-w-md text-center">
+						<h1 class="my-16 pb-6 text-6xl font-heading font-bold text-neutral">
+							{{post.title}}
+						</h1>
+					</div>
+				{% endif %}
+
+
+
+
+
+
+				<section class="article-content px-5 min-h-screen bg-gray-50 py-8 flex flex-col justify-center relative overflow-hidden lg:py-12">
+
+					<div class="article-body prose lg:prose-xl prose-stone mx-auto pt-4">
+						{{ post.content }}
+					</div>
+				</section>
+			</article>
+		</div><!-- /content-wrapper -->
 
 			<!-- comment box -->
-			<section class="comment-box">
-				<!-- comments -->
-				<div class="comments">
-				    {% if post.comments %}
-					<h3> comments </h3>
-					{% for cmt in post.comments %}
-					    {% include "comment.twig" with {comment:cmt} %}
-					{% endfor %}
-				    {% endif %}
-				</div>
+{#			<section class="comment-box">#}
+{#				<!-- comments -->#}
+{#				<div class="comments">#}
+{#				    {% if post.comments %}#}
+{#					<h3> comments </h3>#}
+{#					{% for cmt in post.comments %}#}
+{#					    {% include "comment.twig" with {comment:cmt} %}#}
+{#					{% endfor %}#}
+{#				    {% endif %}#}
+{#				</div>#}
 
-				{% if post.comment_status == "closed" %}
-					<p> comments for this post are closed </p>
-				{% else %}
-				    <!-- comment form -->
-				    {% include "comment-form.twig" %}
-				{% endif %}
+{#				{% if post.comment_status == "closed" %}#}
+{#					<p> comments for this post are closed </p>#}
+{#				{% else %}#}
+{#				    <!-- comment form -->#}
+{#				    {% include "comment-form.twig" %}#}
+{#				{% endif %}#}
 			</section>
 		</article>
 	</div><!-- /content-wrapper -->

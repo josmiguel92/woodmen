@@ -1,0 +1,54 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<div class="content-wrapper">
+		<article class="post-type-{{post.post_type}}  bg-gray-50 pt-16" id="post-{{post.ID}}">
+			{% if post.get_thumbnail %}
+
+				<div class="hero max-h-96" style="background-image: url({{post.thumbnail.src}});">
+					<div class="hero-overlay bg-opacity-60 h-full"></div>
+					<div class="text-center hero-content text-neutral-content">
+						<div class="max-w-md w-full">
+							<h1 class="my-24 text-6xl font-heading font-bold">
+								{{post.title}}
+							</h1>
+						</div>
+					</div>
+				</div>
+			{% else %}
+
+					<div class="text-center w-full">
+						<h1 class="my-16 pb-6 text-6xl font-heading font-bold text-neutral">
+							{{post.title}}
+						</h1>
+					</div>
+
+			{% endif %}
+
+
+			{% if post.content %}
+			<section class="article-content px-5 py-8 flex flex-col justify-center relative overflow-hidden lg:py-12">
+
+				<div class="article-body prose lg:prose-xl prose-stone mx-auto pt-4">
+					{{ post.content }}
+				</div>
+			</section>
+			{% endif %}
+		</article>
+
+		<div class="flex flex-col my-10 md:my-20 mx-5 md:mx-56 md:px-40 border-r-4 border-accent">
+{#			<b class="product_heading text-xl mr-5 md:text-2xl font-display text-gray-500"> {{ __('Familiarize yourself with our rich offer') }}</b>#}
+			<b class="mt-5 md:mt-10 product_heading text-4xl md:text-6xl font-heading"> {{ __('Familiarize yourself with our rich offer') }}</b>
+
+		</div>
+
+		<div class="mx-5 md:mx-56 md:px-40">
+			{% for post in products %}
+				{% include ['tease.twig'] %}
+			{% endfor %}
+		</div>
+
+
+		{% include 'partial/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+	</div><!-- /content-wrapper -->
+{% endblock %}

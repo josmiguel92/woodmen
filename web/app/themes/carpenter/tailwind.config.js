@@ -1,10 +1,17 @@
 const colors = require('tailwindcss/colors');
-const primaryColor = '#ec7247';
+const primaryColor = '#bea272';
+const accentColor = '#ec7247';
 
 module.exports = {
     content: ["./src/**/*.{html,js}", "./**/*.php",  "./*.php", "./templates/**/*.twig"],
     theme: {
         extend: {
+            minHeight: {
+                'screen-1/2': '50vh',
+            },
+            maxHeight: {
+                'screen-1/2': '50vh',
+            },
             height: {
                 'screen-1/2': '50vh',
                 'screen-3/4': '75vh',
@@ -58,7 +65,8 @@ module.exports = {
             pink: colors.pink,
             green: colors.teal,
             orange: colors.orange,
-            primary: primaryColor
+            primary: primaryColor,
+            accent: accentColor
         },
         fontFamily: {
             'sans': ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', '"Noto Sans"', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Noto Color Emoji"'],
@@ -74,7 +82,7 @@ module.exports = {
         themes: [
             {
                 'carpenter': {                          /* your theme name */
-                    'primary' : '#BEA272',           /* Primary color */
+                    'primary' : primaryColor,           /* Primary color */
                     'primary-focus' : '#A8864D',     /* Primary color - focused */
                     'primary-content' : '#ffffff',   /* Foreground content color to use on primary color */
 
@@ -82,7 +90,7 @@ module.exports = {
                     'secondary-focus' : '#0B090B',   /* Secondary color - focused */
                     'secondary-content' : '#f9fafb', /* Foreground content color to use on secondary color */
 
-                    'accent' : '#ec7247',            /* Accent color */
+                    'accent' : accentColor,            /* Accent color */
                     'accent-focus' : '#bf5630',      /* Accent color - focused */
                     'accent-content' : '#ffffff',    /* Foreground content color to use on accent color */
 

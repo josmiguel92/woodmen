@@ -26,7 +26,8 @@ $templates        = array( 'index.twig' );
 
 if (is_home()) {
 
-    $context['home_hero'] = getTranslatedPostByTermId('home_hero');
+
+    $context['home_hero'] = getTranslatedPostByTermId('home_hero')[0] ?? null;
 
     $context['product'] = getTranslatedPostByTermId('product');
     $context['aboutUs'] = getPostTranslation((new \Timber\Post('about-us'))->ID);

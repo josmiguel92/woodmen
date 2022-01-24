@@ -2,7 +2,7 @@
 {#	{{  dump(item) }}#}
 	{% for item in items %}
 		{% set _item = pll_post(item.master_object.id) %}
-		<a class="{{ item.classes | join(' ') }} text-gray-300  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium font-bold"
+		<a class="{{ item.classes | join(' ') }} text-gray-300  hover:text-accent px-3 py-2 rounded-md text-sm font-bold"
 		   target="{{ item.target }}"
 		   href="{{ _item.link }}">
 			{{ _item.title }}

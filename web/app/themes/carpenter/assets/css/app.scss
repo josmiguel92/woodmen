@@ -81,16 +81,28 @@ header > div.fixed{
 
 div.blocks-gallery-image{
     & .blocks-gallery-item{
-      &:nth-child(1){
+      @apply max-h-96;
+      &:nth-child(n+1){
         @apply translate-y-0;
       }
-      &:nth-child(2){
+      &:nth-child(n+2){
         @apply translate-y-5;
       }
-      &:nth-child(3){
+      &:nth-child(n+3){
         @apply translate-y-10;
       }
 
+  }
+}
+
+.use-separator-line::after{
+  @apply bg-accent mt-10 block h-1 w-10;
+  content: " ";
+}
+
+@include phone-down{
+  .hide-bg-image-on-sm{
+    background-image: none !important;
   }
 }
 @tailwind utilities;
