@@ -8,136 +8,144 @@ use Twig\TwigFunction;
  */
 class CarpenterSite extends Timber\Site
 {
-	/** Add timber support. */
-	public function __construct()
-	{
-		add_action('after_setup_theme', array( $this, 'theme_supports' ));
-		add_filter('timber/context', array( $this, 'add_to_context' ));
-		add_filter('timber/twig', array( $this, 'add_to_twig' ));
-		add_action('init', array( $this, 'register_post_types' ));
-		add_action('init', array( $this, 'register_taxonomies' ));
+    /** Add timber support. */
+    public function __construct()
+    {
+        add_action('after_setup_theme', array( $this, 'theme_supports' ));
+        add_filter('timber/context', array( $this, 'add_to_context' ));
+        add_filter('timber/twig', array( $this, 'add_to_twig' ));
+        add_action('init', array( $this, 'register_post_types' ));
+        add_action('init', array( $this, 'register_taxonomies' ));
 
-		add_filter('get_twig', array($this, 'add_twig_pll'));
+        add_filter('get_twig', array($this, 'add_twig_pll'));
 
-		parent::__construct();
-	}
-	/** This is where you can register custom post types. */
-	public function register_post_types()
-	{
-	}
-	/** This is where you can register custom taxonomies. */
-	public function register_taxonomies()
-	{
-	}
+        parent::__construct();
+    }
+    /** This is where you can register custom post types. */
+    public function register_post_types()
+    {
+    }
+    /** This is where you can register custom taxonomies. */
+    public function register_taxonomies()
+    {
+    }
 
-	/** This is where you add some context
-	 *
-	 * @param string $context context['this'] Being the Twig's {{ this }}.
-	 */
-	public function add_to_context($context)
-	{
-		$context['foo']   = 'bar';
-		$context['stuff'] = 'I am a value set in your functions.php file';
-		$context['notes'] = 'These values are available everytime you call Timber::context();';
-		$context['menu']  = new Timber\Menu('main-menu');
-		$context['site']  = $this;
-		return $context;
-	}
+    /** This is where you add some context
+     *
+     * @param string $context context['this'] Being the Twig's {{ this }}.
+     */
+    public function add_to_context($context)
+    {
+        $context['foo']   = 'bar';
+        $context['stuff'] = 'I am a value set in your functions.php file';
+        $context['notes'] = 'These values are available everytime you call Timber::context();';
+        $context['menu']  = new Timber\Menu('main-menu');
+        $context['site']  = $this;
+        return $context;
+    }
 
-	public function theme_supports()
-	{
-		// Add default posts and comments RSS feed links to head.
-		add_theme_support('automatic-feed-links');
+    public function theme_supports()
+    {
+        // Add default posts and comments RSS feed links to head.
+        add_theme_support('automatic-feed-links');
 
-		/*
-		 * Let WordPress manage the document title.
-		 * By adding theme support, we declare that this theme does not use a
-		 * hard-coded <title> tag in the document head, and expect WordPress to
-		 * provide it for us.
-		 */
-		add_theme_support('title-tag');
+        /*
+         * Let WordPress manage the document title.
+         * By adding theme support, we declare that this theme does not use a
+         * hard-coded <title> tag in the document head, and expect WordPress to
+         * provide it for us.
+         */
+        add_theme_support('title-tag');
 
-		/*
-		 * Enable support for Post Thumbnails on posts and pages.
-		 *
-		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-		 */
-		add_theme_support('post-thumbnails');
+        /*
+         * Enable support for Post Thumbnails on posts and pages.
+         *
+         * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+         */
+        add_theme_support('post-thumbnails');
 
-		/*
-		 * Switch default core markup for search form, comment form, and comments
-		 * to output valid HTML5.
-		 */
-		add_theme_support(
-			'html5',
-			array(
-				'comment-form',
-				'comment-list',
-				'gallery',
-				'caption',
-			)
-		);
+        /*
+         * Switch default core markup for search form, comment form, and comments
+         * to output valid HTML5.
+         */
+        add_theme_support(
+            'html5',
+            array(
+                'comment-form',
+                'comment-list',
+                'gallery',
+                'caption',
+            )
+        );
 
-		/*
-		 * Enable support for Post Formats.
-		 *
-		 * See: https://codex.wordpress.org/Post_Formats
-		 */
-		add_theme_support(
-			'post-formats',
-			array(
-				'aside',
-				'image',
-				'video',
-				'quote',
-				'link',
-				'gallery',
-				'audio',
-			)
-		);
+        /*
+         * Enable support for Post Formats.
+         *
+         * See: https://codex.wordpress.org/Post_Formats
+         */
+        add_theme_support(
+            'post-formats',
+            array(
+                'aside',
+                'image',
+                'video',
+                'quote',
+                'link',
+                'gallery',
+                'audio',
+            )
+        );
 
-		add_theme_support('menus');
-	}
+        add_theme_support('menus');
+    }
 
-	/** This Would return 'foo bar!'.
-	 *
-	 * @param string $text being 'foo', then returned 'foo bar!'.
-	 */
-	public function myfoo($text)
-	{
-		$text .= ' bar!';
-		return $text;
-	}
+    /** This Would return 'foo bar!'.
+     *
+     * @param string $text being 'foo', then returned 'foo bar!'.
+     */
+    public function myfoo($text)
+    {
+        $text .= ' bar!';
+        return $text;
+    }
 
-	/** This is where you can add your own functions to twig.
-	 *
-	 * @param string $twig get extension.
-	 */
-	public function add_to_twig($twig)
-	{
-		$twig->addExtension(new Twig\Extension\StringLoaderExtension());
-		$twig->addFilter(new Twig\TwigFilter('myfoo', array( $this, 'myfoo' )));
-		return $twig;
-	}
+    /** This is where you can add your own functions to twig.
+     *
+     * @param string $twig get extension.
+     */
+    public function add_to_twig($twig)
+    {
+        $twig->addExtension(new Twig\Extension\StringLoaderExtension());
+        $twig->addFilter(new Twig\TwigFilter('myfoo', array( $this, 'myfoo' )));
+        return $twig;
+    }
 
-	function add_twig_pll($twig) {
-		$function = new TwigFunction('pll_permalink', function ($id) {
-			return get_permalink(pll_get_post($id));
-		});
-		$twig->addFunction($function);
+    function add_twig_pll($twig)
+    {
+        $function = new TwigFunction('pll_permalink', function ($id) {
+            if (function_exists('pll_get_post')) {
+                return get_permalink(pll_get_post($id));
+            }
+        });
+        $twig->addFunction($function);
 
-		$function = new TwigFunction('pll_post', function ($id) {
-			return new Timber\Post(pll_get_post($id));
-		});
-		$twig->addFunction($function);
+        $function = new TwigFunction('pll_post', function ($id) {
+            if (function_exists('pll_get_post')) {
+                return new Timber\Post(pll_get_post($id));
+            }
 
-		$function = new TwigFunction('pll_the_languages', function ($showFlags = 1) {
-			$out =  pll_the_languages( array( 'show_flags' => $showFlags,'show_names' => 0, 'echo' => 0 ) );
+            return null;
+        });
+        $twig->addFunction($function);
 
-			return $out;
-		});
-		$twig->addFunction($function);
-		return $twig;
-	}
+        $function = new TwigFunction('pll_the_languages', function ($showFlags = 1) {
+            if (function_exists('pll_the_languages')) {
+                return pll_the_languages(array( 'show_flags' => $showFlags, 'show_names' => 0, 'echo' => 0 ));
+            }
 
+	        return null;
+        });
+        $twig->addFunction($function);
+        return $twig;
+    }
 }

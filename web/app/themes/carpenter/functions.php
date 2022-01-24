@@ -23,7 +23,6 @@ if (file_exists($composer_autoload)) {
     $timber = new Timber();
 }
 
-
 /**
  * This ensures that Timber is loaded and available as a PHP class.
  * If not, it gives an error message to help direct developers on where to activate
@@ -62,10 +61,14 @@ new CarpenterSite();
 
 function getPostTranslation($post_id): ?Post
 {
-    $post = pll_get_post($post_id);
-    if ($post) {
-        return new Post($post);
-    }
+	if(function_exists( 'pll_get_post' ))
+	{
+		$post = pll_get_post($post_id);
+		if ($post) {
+			return new Post($post);
+		}
+	}
+
     return null;
 }
 
@@ -76,47 +79,48 @@ function getPostCollectionByTermSlug($term_slug)
 
 function getStickyPostCollectionByTermSlug($term_slug)
 {
-	$sticky = get_option( 'sticky_posts' );
-	$args = array(
-		'posts_per_page' => 1,
-		'post__in' => $sticky,
-		'ignore_sticky_posts' => 0,
-//		'cat' => ( new \Timber\Term($term_slug) )->ID,
-	);
-	return $query = new \Timber\PostQuery($args);
+    $sticky = get_option('sticky_posts');
+    $args = array(
+        'posts_per_page' => 1,
+        'post__in' => $sticky,
+        'ignore_sticky_posts' => 0,
+//      'cat' => ( new \Timber\Term($term_slug) )->ID,
+    );
+    return $query = new \Timber\PostQuery($args);
 
 
 
-//	if ( isset( $sticky[0] ) ) {
-//		return ( new \Timber\Term($term_slug) )->posts;
-//	}
-
+//  if ( isset( $sticky[0] ) ) {
+//      return ( new \Timber\Term($term_slug) )->posts;
+//  }
 }
 
 function getTranslatedPostByTermId($term_id): array
 {
     $posts = ( new \Timber\Term($term_id) )->posts;
     $postTranslations = [];
-    foreach ($posts as $post) {
-        $postTranslations[] = new Post(pll_get_post($post->ID));
+    if (function_exists('pll_get_post')) {
+        foreach ($posts as $post) {
+            $postTranslations[] = new Post(pll_get_post($post->ID));
+        }
     }
     return $postTranslations;
 }
+
 
 function wporg_block_wrapper($block_content, $block)
 {
 //    dump([$block_content, $block]);
 
-	if(in_array($block['blockName'], ['core/gallery'])) {
-		return renderBlock($block);
-	}
-	return $block_content;
-
+    if (in_array($block['blockName'], ['core/gallery'])) {
+        return renderBlock($block);
+    }
+    return $block_content;
 }
 
 add_filter('render_block', 'wporg_block_wrapper', 10, 2);
 
-function renderBlock($block, $is_preview = false )
+function renderBlock($block, $is_preview = false)
 {
     $context = Timber::context();
 
@@ -130,8 +134,7 @@ function renderBlock($block, $is_preview = false )
     $context['is_preview'] = $is_preview;
 
     // Render the block.
-	$blockName = str_replace('/','-', $block['blockName']);
-//	dump('block/'.$blockName.'.twig');
+    $blockName = str_replace('/', '-', $block['blockName']);
+//  dump('block/'.$blockName.'.twig');
     return Timber::fetch(['block/'.$blockName.'.twig'], $context);
-
 }
