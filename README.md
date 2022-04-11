@@ -25,7 +25,7 @@
 <p align="center">
   <strong>A modern WordPress stack</strong>
   <br />
-  Built with ❤️
+  Built with a lot of ❤️
 </p>
 
 <p align="center">
