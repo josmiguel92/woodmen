@@ -17,6 +17,11 @@
 use Timber\Post;
 use Timber\Timber;
 
+@ini_set( 'upload_max_size' , '256M' );
+@ini_set( 'post_max_size', '256M');
+@ini_set( 'max_execution_time', '300' );
+
+
 $composer_autoload = __DIR__ . '/../../../../vendor/autoload.php';
 if (file_exists($composer_autoload)) {
     require_once $composer_autoload;
