@@ -4,8 +4,7 @@
     <section class="bg-gray-200">
 {#        {% for post in home_hero %}#}
             <div class="grid home_hero grid-cols-9 grid-rows-6">
-                <div class="col-start-1 col-end-3 row-start-1 row-end-6
-             md:col-end-4 md:row-end-5 md:h-screen overflow-hidden ">
+                <div class="col-start-1 col-end-3 row-start-1 row-end-6 md:col-end-4 md:row-end-5 md:h-screen overflow-hidden">
                     <img class="h-full"
                          src="{{ site.theme.link }}/static/img/wood-patern-3.jpg" alt="">
                 </div>
@@ -13,12 +12,19 @@
                     <img class="min-h-full md:w-full" src="{{home_hero.thumbnail.src}}"  alt=""/>
                 </div>
                 <div class="col-start-2 col-end-9 row-start-3 col-span-2 md:col-end-7">
-                    <h2 class="text-3xl md:text-7xl font-heading text-white font-black">
+                    <h2 class="text-3xl md:text-7xl font-heading text-white font-black" 
+                    data-sal="slide-up"
+                    data-sal-delay="900"
+                    data-sal-duration="1000"
+                    data-sal-easing="ease-out-back">
                         <a href="{{home_hero.link}}">{{home_hero.title}}</a></h2>
                 </div>
                 <div class="col-start-2 col-span-2 row-start-5
             md:row-start-4 flex items-center">
-                    <a href="{{ home_hero.link }}" class="btn btn-accent md:btn-lg">
+                    <a href="{{ home_hero.link }}" class="btn btn-accent md:btn-lg" 
+                     data-sal="slide-up"
+                     data-sal-delay="1000"
+                     data-sal-easing="ease-out-back">
                         {{ home_hero.cta_text ?: __('See our offers') }}
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline-block w-6 h-6 ml-2 stroke-current">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -31,14 +37,18 @@
     </section>
 
     <section class="product_show bg-gray-200 border-gray-200 border-solid mb-64">
-        <div class="flex flex-col my-10 md:my-20 mx-5 md:mx-56 md:px-40 border-r-4 border-accent">
+        <div class="flex flex-col my-10 md:my-20 mx-5 md:mx-56 md:px-40 border-r-4 border-accent" 
+        data-sal="slide-up"
+        data-sal-duration="500">
             <b class="product_heading text-xl mr-5 md:text-2xl font-display text-gray-500"> {{ __('Familiarize yourself with our rich offer') }}</b>
             <b class="mt-5 md:mt-10 product_heading text-4xl md:text-6xl font-heading"> {{ __('Familiarize yourself with our rich offer') }}</b>
         </div>
 
         <div class="products_grid flex flex-col md:grid gap-10 w-3/4 mx-auto -mb-64">
             {% for post in product %}
-                <div class="card shadow-xl image-full border-r-0 bg-gray-500">
+                <div class="card shadow-xl image-full border-r-0 bg-gray-500" 
+                data-sal="slide-up"
+                data-sal-duration="500">
                     <figure>
                         <img src="{{post.thumbnail.src}}">
                     </figure>
@@ -75,17 +85,26 @@
     {% if aboutUs is not null %}
     <section class="text-gray-600 body-font">
         <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center w-3/4">
-            <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0 max-h-96">
+            <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0 max-h-96"
+            data-sal="slide-up"
+            data-sal-duration="500">
                 <img class="object-cover object-center rounded" alt="hero" src="{{ aboutUs.thumbnail }}">
             </div>
             <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-                <h1 class="font-heading sm:text-4xl text-3xl mb-4 font-bold text-gray-900 use-separator-line">
+                <h1 class="font-heading sm:text-4xl text-3xl mb-4 font-bold text-gray-900 use-separator-line"
+                data-sal="slide-up"
+                data-sal-duration="500"
+                data-sal-delay="600">
                     {{ aboutUs.alternate_title ?: aboutUs.post_title }}
                 </h1>
-                <p class="my-8 leading-relaxed">{{ aboutUs.preview.read_more(' ')  }}</p>
+                <p class="my-8 leading-relaxed"
+                data-sal="slide-up"
+                data-sal-duration="500">{{ aboutUs.preview.read_more(' ')  }}</p>
 
 {#                {{ dump(aboutUs.preview(50, false, " ") ) }}#}
-                <div class="flex justify-center">
+                <div class="flex justify-center"
+                data-sal="slide-up"
+                data-sal-duration="500">
 {#                     <a href="{{ .link }}" class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">#}
 {#                         Button</a>#}
                     <a href="{{ aboutUs.link }}" class="btn btn-accent">
@@ -103,7 +122,10 @@
     <section class="text-gray-600 body-font w-3/4  mx-auto">
         <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-col md:flex-row justify-around sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
-                <div class="p-4 md:w-1/4 flex flex-col items-center">
+                <div class="p-4 md:w-1/4 flex flex-col items-center"
+                data-sal="slide-up"
+                data-sal-duration="900"
+                data-sal-delay="5">
                     <div class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-gray-100 mb-4 flex-shrink-0">
                         <img src="{{ site.theme.link }}/static/img/icons-wood.png" alt="best wood in market">
                     </div>
@@ -112,7 +134,10 @@
 
                     </div>
                 </div>
-                <div class="p-4 md:w-1/4 flex flex-col items-center">
+                <div class="p-4 md:w-1/4 flex flex-col items-center"
+                data-sal="slide-up"
+                data-sal-duration="900"
+                data-sal-delay="300">
                     <div class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-gray-100 mb-4 flex-shrink-0">
                         <img src="{{ site.theme.link }}/static/img/icons-machine.png" alt="The best wood equipment">
                     </div>
@@ -121,7 +146,10 @@
 
                     </div>
                 </div>
-                <div class="p-4 md:w-1/4 flex flex-col items-center">
+                <div class="p-4 md:w-1/4 flex flex-col items-center"
+                data-sal="slide-up"
+                data-sal-duration="900"
+                data-sal-delay="600">
                     <div class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-gray-100 mb-4 flex-shrink-0">
                         <img src="{{ site.theme.link }}/static/img/icons-painted.png" alt="Finest finish">
                     </div>
@@ -130,7 +158,10 @@
 
                     </div>
                 </div>
-                <div class="p-4 md:w-1/4 flex flex-col items-center">
+                <div class="p-4 md:w-1/4 flex flex-col items-center"
+                data-sal="slide-up"
+                data-sal-duration="900"
+                data-sal-delay="1000">
                     <div class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-gray-100 mb-4 flex-shrink-0">
                         <img src="{{ site.theme.link }}/static/img/icons-igreen.png" alt="green and renewable">
                     </div>

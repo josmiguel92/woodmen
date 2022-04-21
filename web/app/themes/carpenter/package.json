@@ -30,6 +30,7 @@
   "dependencies": {
     "@hotwired/stimulus-webpack-helpers": "^1.0.1",
     "core-js": "^3.19.0",
-    "daisyui": "^1.23.0"
+    "daisyui": "^1.23.0",
+    "sal.js": "^0.8.5"
   }
 }
