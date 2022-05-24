@@ -1,0 +1,8 @@
+{% if is_preview %}
+    <p>I will only appear in the editor.</p>
+{% endif %}
+{#{{ dump(block) }}#}
+<div id="example-{{ block.id }}" class="wrapper text-red-600">
+    <h1>{{ fields.title }}</h1>
+    <p>{{ fields.description }}</p>
+</div>
